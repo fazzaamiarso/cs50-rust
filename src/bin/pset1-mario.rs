@@ -18,7 +18,7 @@ fn main() {
         };
         
         for row in 0..height {
-            let white_space = &height - &row;
+            let white_space = height - &row;
             for _ in 0..white_space {
                 print!(" ");
             }
