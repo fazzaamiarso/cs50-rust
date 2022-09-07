@@ -53,6 +53,9 @@ fn main() {
         match cc_code {
             "51" | "52" | "53" | "54" | "55" => println!("MASTERCARD"),
             "34" | "37" => println!("AMEX"),
+            "35" => println!("JCB"),
+            "30" => println!("Diners Club"),
+            "6" => println!("DISCOVER"),
             "4" => println!("VISA"),
             _ => println!("OTHER CARD"),
         }
