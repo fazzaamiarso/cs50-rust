@@ -58,3 +58,22 @@ fn main() {
         println!("INVALID");
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_check_odd() {
+        assert_eq!(check_odd(12342), false);
+        assert_eq!(check_odd(9999), true);
+    }
+
+    #[test]
+    fn test_validate_cc() {
+        assert_eq!(validate_cc("6176292929"), false);
+        assert_eq!(validate_cc("4003600000000014"), true);
+        assert_eq!(validate_cc("371449635398431"), true);
+        assert_eq!(validate_cc("4222222222222"), true);
+    }
+}
