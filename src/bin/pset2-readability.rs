@@ -1,12 +1,7 @@
-use std::io;
+use dialoguer::Input;
 
 fn main() {
-    let mut text_input = String::new();
-
-    println!("Text: ");
-    io::stdin()
-        .read_line(&mut text_input)
-        .expect("Failed to read line!");
+    let text_input: String = Input::new().with_prompt("Text: ").interact_text().unwrap();
 
     let letter_count = count_letters(&text_input);
     let word_count = count_words(&text_input);
@@ -20,7 +15,7 @@ fn main() {
     match read_index {
         idx if idx.ge(&16) => println!("Grade 16+"),
         idx if idx.lt(&1) => println!("Before Grade 1"),
-        idx => println!("Grade {}", idx)
+        idx => println!("Grade {}", idx),
     }
 }
 
@@ -39,10 +34,10 @@ fn count_sentences(text: &str) -> u32 {
     });
 }
 
-fn calculate_index (letters : u32, words : u32, sentences : u32) -> u32 {
-    let l : f32 = 100 as f32 * (letters as f32 / words as f32);
-    let s : f32 = 100 as f32 * (sentences as f32 / words as f32);
-    
+fn calculate_index(letters: u32, words: u32, sentences: u32) -> u32 {
+    let l = 100 as f32 * (letters as f32 / words as f32);
+    let s = 100 as f32 * (sentences as f32 / words as f32);
+
     let index = (0.0588 * l - 0.296 * s - 15.8).round();
     return index as u32;
-} 
+}

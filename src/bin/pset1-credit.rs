@@ -10,22 +10,17 @@ fn validate_cc(cc: &str) -> bool {
 
     for (idx, digit) in cc.char_indices() {
         let digit = digit.to_digit(10).unwrap();
-        let doubled: u32;
+        let doubled = digit * 2;
+        let d1: u32 = doubled / 10;
+        let d2: u32 = doubled % 10;
+
         if is_cc_odd {
             if check_odd(idx as u32) {
-                doubled = digit * 2;
-                let d1: u32 = doubled / 10;
-                let d2: u32 = doubled % 10;
-
                 multiply_total += d1 + d2;
                 continue;
             }
         } else {
             if !check_odd(idx as u32) {
-                doubled = digit * 2;
-                let d1: u32 = doubled / 10;
-                let d2: u32 = doubled % 10;
-
                 multiply_total += d1 + d2;
                 continue;
             }
@@ -45,7 +40,7 @@ fn main() {
         .expect("Expected a credit card number!");
 
     if validate_cc(&cc_number) {
-        let cc_code = if cc_number.starts_with("4") {
+        let cc_code = if cc_number.starts_with("4") || cc_number.starts_with("6") {
             &cc_number[..1]
         } else {
             &cc_number[..2]

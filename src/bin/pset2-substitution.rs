@@ -2,7 +2,9 @@ use dialoguer::Input;
 use std::env::args;
 
 fn main() {
-    let alphabet = "abcdefghijklmnopqrstuvwxyz".char_indices().collect::<Vec<(usize, char)>>();
+    let alphabet = "abcdefghijklmnopqrstuvwxyz"
+        .char_indices()
+        .collect::<Vec<(usize, char)>>();
 
     if args().len() != 2 {
         println!("Usage: command <KEY>");
@@ -24,14 +26,21 @@ fn main() {
         .chars()
         .map(|c| {
             if c.is_alphabetic() {
-                let idx = alphabet.iter().position(|&x| x.1 == c.to_ascii_lowercase()).unwrap();
+                let idx = alphabet
+                    .iter()
+                    .position(|&x| x.1 == c.to_ascii_lowercase())
+                    .unwrap();
                 let el = key.chars().collect::<Vec<char>>()[idx];
-                if c.is_uppercase() {return el.to_ascii_uppercase()} else {return el.to_ascii_lowercase()}
+                if c.is_uppercase() {
+                    return el.to_ascii_uppercase();
+                } else {
+                    return el.to_ascii_lowercase();
+                }
             }
             return c;
         })
         .collect::<Vec<char>>();
-    
-    let cipher_text : String = cipher_vec.iter().collect();
+
+    let cipher_text: String = cipher_vec.iter().collect();
     println!("cipher text: {}", cipher_text);
 }
